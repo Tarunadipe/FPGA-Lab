@@ -1,9 +1,22 @@
 #include <Arduino.h>
 unsigned char num ; //input number
-unsigned char _X=0x00,_P=0x00,_Q=0x00,_R=0x00; //binary inputs
+unsigned char _X=0x00;
+unsigned char _P=0x00,_Q=0x00,_R=0x00; //binary inputs
 unsigned char one = 0x01;
 unsigned char Out; //outputs
 char buffer[40];
+
+void setup() {
+pinMode(2,OUTPUT); //a
+pinMode(3,OUTPUT); //b
+pinMode(4,OUTPUT); //c
+pinMode(5,OUTPUT); //d
+pinMode(6,OUTPUT); //e
+pinMode(7,OUTPUT); //f
+pinMode(8,OUTPUT); //g
+pinMode(13,OUTPUT); //output
+}
+
 void disp_num(unsigned char A, unsigned char B, unsigned char C, unsigned char D){
 // A = 0;
 unsigned char a,b,c,d,e,f,g;
@@ -23,20 +36,9 @@ digitalWrite(7,one&f);
 digitalWrite(8,one&g);
 }
 
-void setup() {
-pinMode(2,OUTPUT); //a
-pinMode(3,OUTPUT); //b
-pinMode(4,OUTPUT); //c
-pinMode(5,OUTPUT); //d
-pinMode(6,OUTPUT); //e
-pinMode(7,OUTPUT); //f
-pinMode(8,OUTPUT); //g
-pinMode(13,OUTPUT); //output
-}
-unsigned char NOR(unsigned char X, unsigned char Y){ return ~(X|Y); } //NOR function
 unsigned char Output(unsigned char X, unsigned char Y, unsigned char z){ return ~((~(Y|Z))|(~((~(X))|Y))|(~(X|(~(y))|(~(Z))))); } //Out function
 void loop() {
-for (num = 0x00; num<0x10; num++){
+for (num = 0x00; num<0x08; num++){
 //loop to iterate through all usecases
 delay(1000);
 _P = num>>2; _Q = num>>1; _R = num>>0; //changing the inputs , D is LSB
