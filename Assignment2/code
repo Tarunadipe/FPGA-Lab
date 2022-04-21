@@ -36,7 +36,7 @@ digitalWrite(7,one&f);
 digitalWrite(8,one&g);
 }
 
-unsigned char Output(unsigned char X, unsigned char Y, unsigned char Z){ return ~((~(Y|Z))|(~((~(X))|Y))|(~(X|(~(Y))|(~(Z))))); } //Out function
+unsigned char Output(unsigned char X, unsigned char Y, unsigned char Z){ return (Y|Z)&((~X)|Y)|(X|(~Y)|(~Z)); } //Out function
 void loop() {
 for (num = 0x00; num<0x08; num++){
 //loop to iterate through all usecases
